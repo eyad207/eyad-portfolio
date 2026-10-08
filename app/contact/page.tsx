@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageIntro } from "@/components/page-intro";
 import { siteConfig } from "@/lib/site-config";
+import { ui } from "@/lib/ui";
 
 export const metadata: Metadata = {
   title: "Contact | Eyad Lazkani",
@@ -26,44 +27,58 @@ export default function ContactPage() {
   ];
 
   return (
-    <main className="container page-main contact-page">
+    <main className={`${ui.pageMain} max-w-[800px]`}>
       <PageIntro
         eyebrow="CONTACT"
         title="Get in touch."
         description="I’m open to conversations about software, products, and technology."
       />
-      <div className="contact-card">
-        <h2>Contact details</h2>
-        <ul className="contact-list">
-          {configuredLinks.map((item) => (
-            <li key={item.label}>
-              <span>{item.label}</span>
-              <a
-                href={item.href}
-                target={item.label === "GitHub" || item.label === "LinkedIn" ? "_blank" : undefined}
-                rel={item.label === "GitHub" || item.label === "LinkedIn" ? "noreferrer" : undefined}
+      <div className={`${ui.card} p-[22px]`}>
+        <h2 className="mb-[15px] text-[17px] font-[550]">Contact details</h2>
+        <ul>
+          {configuredLinks.map((item) => {
+            const external = item.label === "GitHub" || item.label === "LinkedIn";
+            return (
+              <li
+                className="grid grid-cols-[80px_minmax(0,1fr)] gap-3 border-t border-border py-3 text-xs md:grid-cols-[120px_minmax(0,1fr)] md:gap-5"
+                key={item.label}
               >
-                {item.detail}
-                {(item.label === "GitHub" || item.label === "LinkedIn") && (
-                  <span aria-hidden="true"> ↗</span>
-                )}
-              </a>
-            </li>
-          ))}
+                <span className="text-muted">{item.label}</span>
+                <a
+                  className="text-accent [overflow-wrap:anywhere]"
+                  href={item.href}
+                  target={external ? "_blank" : undefined}
+                  rel={external ? "noreferrer" : undefined}
+                >
+                  {item.detail}
+                  {external && <span aria-hidden="true"> ↗</span>}
+                </a>
+              </li>
+            );
+          })}
         </ul>
         {!siteConfig.email && (
-          <p className="contact-note">
+          <p className="mt-[15px] text-[11px] text-muted">
             Email contact details can be added in the site configuration.
           </p>
         )}
       </div>
       {siteConfig.cv && (
-        <a className="button button-secondary cv-link" href={siteConfig.cv}>
+        <a className={`${ui.buttonSecondary} mt-[17px]`} href={siteConfig.cv}>
           View CV <span aria-hidden="true">↗</span>
         </a>
       )}
-      <p className="contact-signoff">
-        You can also explore my <a href={siteConfig.github} target="_blank" rel="noreferrer">GitHub profile</a>.
+      <p className="mt-[21px] text-[11px] text-muted">
+        You can also explore my{" "}
+        <a
+          className="text-accent underline underline-offset-[3px]"
+          href={siteConfig.github}
+          target="_blank"
+          rel="noreferrer"
+        >
+          GitHub profile
+        </a>
+        .
       </p>
     </main>
   );

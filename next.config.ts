@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
   experimental: {
     agentFeedback: true,
   },
+  images: {
+    domains: ["res.cloudinary.com"],
+  },
   cacheComponents: true,
   partialPrefetching: true,
   turbopack: {

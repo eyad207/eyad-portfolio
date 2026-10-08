@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
 import { PageIntro } from "@/components/page-intro";
+import { TagList } from "@/components/tag-list";
 import { getPortfolioData } from "@/lib/portfolio-repository";
+import { ui } from "@/lib/ui";
 
 export const metadata: Metadata = {
   title: "Events & Activities | Eyad Lazkani",
@@ -13,53 +15,56 @@ async function EventsContent() {
   const { events, projects } = await getPortfolioData();
 
   return (
-    <main className="container page-main">
+    <main className={ui.pageMain}>
       <PageIntro
         eyebrow="EVENTS & ACTIVITIES"
         title="Learning through people and practice."
         description="Startup programs, technology events, and career activities—separate from my software projects and professional employment."
       />
-      <div className="timeline activity-timeline">
+      <div className={ui.timeline}>
         {events.map((event) => {
           const relatedProject = event.relatedProjectSlug
             ? projects.find((project) => project.slug === event.relatedProjectSlug)
             : undefined;
 
           return (
-            <article className="timeline-entry" key={event.slug}>
-              <div className="timeline-date">{event.dateLabel ?? event.type}</div>
-              <div className="timeline-content">
-                <p className="eyebrow">{event.organization}</p>
-                <h2>{event.name}</h2>
-                <p className="section-copy">{event.description}</p>
+            <article className={ui.timelineEntry} key={event.slug}>
+              <div className={ui.timelineDate}>{event.dateLabel ?? event.type}</div>
+              <div>
+                <p className={`${ui.eyebrow} mb-2`}>{event.organization}</p>
+                <h2 className={ui.blockTitle}>{event.name}</h2>
+                <p className={`${ui.sectionCopy} mt-[9px]`}>{event.description}</p>
                 {event.topics.length > 0 && (
-                  <div className="event-detail-block">
-                    <h3>Topics and activities</h3>
-                    <ul className="tag-list">
-                      {event.topics.map((topic) => <li key={topic}>{topic}</li>)}
-                    </ul>
+                  <div className="mt-[21px]">
+                    <h3 className="mb-[9px] text-xs font-[550] text-foreground">
+                      Topics and activities
+                    </h3>
+                    <TagList items={event.topics} />
                   </div>
                 )}
                 {event.learning && event.learning.length > 0 && (
-                  <div className="event-detail-block">
-                    <h3>What I took from it</h3>
-                    <ul className="detail-list">
+                  <div className="mt-[21px]">
+                    <h3 className="mb-[9px] text-xs font-[550] text-foreground">
+                      What I took from it
+                    </h3>
+                    <ul className={ui.detailList}>
                       {event.learning.map((item) => <li key={item}>{item}</li>)}
                     </ul>
                   </div>
                 )}
                 {event.people && event.people.length > 0 && (
-                  <div className="event-people">
+                  <div className="mt-[19px] grid gap-0.5">
                     {event.people.map((group) => (
-                      <p key={group.role}>
-                        <span>{group.role}:</span> {group.names.join(", ")}
+                      <p className="text-[11px] text-muted" key={group.role}>
+                        <span className="font-medium text-foreground">{group.role}:</span>{" "}
+                        {group.names.join(", ")}
                       </p>
                     ))}
                   </div>
                 )}
                 {relatedProject && (
                   <Link
-                    className="text-link event-project-link"
+                    className={`${ui.textLink} mt-5`}
                     href={`/projects/${relatedProject.slug}`}
                   >
                     Related project: {relatedProject.name}
@@ -77,7 +82,13 @@ async function EventsContent() {
 
 export default function EventsPage() {
   return (
-    <Suspense fallback={<main className="container page-main"><p className="loading-state">Loading events…</p></main>}>
+    <Suspense
+      fallback={
+        <main className={ui.pageMain}>
+          <p className={ui.loading}>Loading events…</p>
+        </main>
+      }
+    >
       <EventsContent />
     </Suspense>
   );

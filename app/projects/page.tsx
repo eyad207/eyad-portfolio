@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { PageIntro } from "@/components/page-intro";
 import { ProjectBrowser } from "@/components/project-browser";
 import { getPortfolioData } from "@/lib/portfolio-repository";
+import { ui } from "@/lib/ui";
 
 export const metadata: Metadata = {
   title: "Projects | Eyad Lazkani",
@@ -17,13 +18,13 @@ async function ProjectsContent() {
 
 export default function ProjectsPage() {
   return (
-    <main className="container page-main">
+    <main className={ui.pageMain}>
       <PageIntro
         eyebrow="PROJECTS"
         title="Work I’ve built and worked on."
         description="A selection of software and product projects, from startup work to university applications. Search or filter to explore."
       />
-      <Suspense fallback={<p className="loading-state">Loading projects…</p>}>
+      <Suspense fallback={<p className={ui.loading}>Loading projects…</p>}>
         <ProjectsContent />
       </Suspense>
     </main>

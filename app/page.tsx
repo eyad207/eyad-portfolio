@@ -2,7 +2,9 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { ProfilePhoto } from "@/components/profile-photo";
 import { ProjectCard } from "@/components/project-card";
+import { TagList } from "@/components/tag-list";
 import { getPortfolioData } from "@/lib/portfolio-repository";
+import { ui } from "@/lib/ui";
 
 const interests = [
   "Full-stack development",
@@ -24,54 +26,65 @@ async function HomeContent() {
 
   return (
     <main>
-      <section className="hero container" aria-labelledby="intro-title">
-        <div className="hero-copy">
-          <p className="eyebrow">DATA ENGINEERING STUDENT / SOFTWARE DEVELOPER</p>
-          <h1 id="intro-title">
-            Eyad Lazkani
-            <span>Building software and products with purpose.</span>
-          </h1>
-          <p className="hero-description">
-            I study Data Engineering at OsloMet and build web products alongside
-            my studies—from software for a real business to PickBox, a product
-            I continue developing to help reduce food waste.
+      <section
+        className={`${ui.container} grid items-center gap-[34px] pt-[58px] pb-[52px] md:min-h-[500px] md:grid-cols-[minmax(0,1.2fr)_minmax(280px,0.72fr)] md:gap-[45px] lg:min-h-[570px] lg:gap-[86px] lg:pt-[60px] lg:pb-[70px]`}
+        aria-labelledby="intro-title"
+      >
+        <div className="py-4">
+          <p className={`${ui.eyebrow} mb-3.5`}>
+            DATA ENGINEERING STUDENT / SOFTWARE DEVELOPER
           </p>
-          <div className="hero-actions">
-            <Link className="button button-primary" href="/projects">
+          <h1 className={ui.heroTitle} id="intro-title">
+            Hello, I'm
+          </h1>
+          <h1 className={`${ui.heroTitle} text-blue-700`}>Eyad Lazkani</h1>
+          <p className={`${ui.introDescription} mt-[22px] md:text-[15px]`}>
+            I study Data Engineering at OsloMet and build web products alongside
+            my studies—from software for a real business to PickBox, a product I
+            continue developing to help reduce food waste.
+          </p>
+          <div className="mt-[27px] flex flex-wrap items-center gap-[11px]">
+            <Link className={ui.buttonPrimary} href="/projects">
               Explore projects <span aria-hidden="true">→</span>
             </Link>
-            <Link className="button button-secondary" href="/contact">
+            <Link className={ui.buttonSecondary} href="/contact">
               Contact me
             </Link>
           </div>
-          <p className="hero-location">OsloMet · Data Engineering</p>
+          <p className="mt-6 text-[11px] text-subtle">
+            OsloMet · Data Engineering
+          </p>
         </div>
-        <div className="hero-image-wrap">
+        <div className="w-full max-w-[300px] md:max-w-[356px] md:justify-self-end">
           <ProfilePhoto />
-          <p className="image-caption">Data Engineering · Software · Products</p>
+          <p className="mt-[9px] font-mono text-[9px] text-subtle">
+            Data Engineering · Software · Products
+          </p>
         </div>
       </section>
 
-      <section className="section section-border" aria-labelledby="featured-title">
-        <div className="container">
-          <div className="section-heading">
+      <section className={ui.section} aria-labelledby="featured-title">
+        <div className={ui.container}>
+          <div className={ui.sectionHeading}>
             <div>
-              <p className="eyebrow">SELECTED WORK</p>
-              <h2 id="featured-title">Featured projects</h2>
+              <p className={`${ui.eyebrow} mb-3.5`}>SELECTED WORK</p>
+              <h2 className={ui.sectionTitle} id="featured-title">
+                Featured projects
+              </h2>
             </div>
-            <Link className="text-link" href="/projects">
+            <Link className={ui.textLink} href="/projects">
               All projects <span aria-hidden="true">→</span>
             </Link>
           </div>
-          <div className="project-grid">
+          <div className={ui.projectGrid}>
             {featuredProjects.map((project) => (
               <ProjectCard key={project.slug} project={project} />
             ))}
           </div>
           {otherProjects.length > 0 && (
-            <div className="additional-projects">
-              <p className="eyebrow">MORE PROJECTS</p>
-              <div className="project-grid project-grid-secondary">
+            <div className="mt-[34px]">
+              <p className={`${ui.eyebrow} mb-3`}>MORE PROJECTS</p>
+              <div className={ui.projectGridSecondary}>
                 {otherProjects.map((project) => (
                   <ProjectCard key={project.slug} project={project} compact />
                 ))}
@@ -82,51 +95,74 @@ async function HomeContent() {
       </section>
 
       {experience && (
-        <section className="section section-border" aria-labelledby="experience-title">
-          <div className="container home-two-column">
+        <section className={ui.section} aria-labelledby="experience-title">
+          <div className={`${ui.container} ${ui.twoColumn}`}>
             <div>
-              <p className="eyebrow">PROFESSIONAL EXPERIENCE</p>
-              <h2 id="experience-title">Building in a real-world setting.</h2>
-              <p className="section-copy">
+              <p className={`${ui.eyebrow} mb-3.5`}>PROFESSIONAL EXPERIENCE</p>
+              <h2 className={ui.sectionTitle} id="experience-title">
+                Building in a real-world setting.
+              </h2>
+              <p className={`${ui.sectionCopy} mt-[15px] mb-[19px]`}>
                 Alongside my studies, I work on software and product
                 functionality at FixTech AS.
               </p>
-              <Link className="text-link" href="/experience">
+              <Link className={ui.textLink} href="/experience">
                 View experience <span aria-hidden="true">→</span>
               </Link>
             </div>
-            <article className="experience-preview">
-              <div className="experience-date">DECEMBER 2025 — PRESENT</div>
-              <h3>{experience.role}</h3>
-              <p className="experience-organization">{experience.organization}</p>
-              <p>{experience.summary}</p>
+            <article className="border-l-2 border-[#d8e3fb] pl-5">
+              <div className="font-mono text-[9px] tracking-[0.03em] text-subtle">
+                DECEMBER 2025 — PRESENT
+              </div>
+              <h3 className="mt-2.5 text-lg font-[550] tracking-[-0.035em]">
+                {experience.role}
+              </h3>
+              <p className="mt-0.5 text-xs leading-[1.75] text-foreground">
+                {experience.organization}
+              </p>
+              <p className="mt-[9px] text-xs leading-[1.75] text-muted">
+                {experience.summary}
+              </p>
             </article>
           </div>
         </section>
       )}
 
-      <section className="section section-border" aria-labelledby="activities-title">
-        <div className="container">
-          <div className="section-heading">
+      <section className={ui.section} aria-labelledby="activities-title">
+        <div className={ui.container}>
+          <div className={ui.sectionHeading}>
             <div>
-              <p className="eyebrow">PROGRAMS &amp; CAREER ACTIVITIES</p>
-              <h2 id="activities-title">Learning beyond the classroom</h2>
+              <p className={`${ui.eyebrow} mb-3.5`}>
+                PROGRAMS &amp; CAREER ACTIVITIES
+              </p>
+              <h2 className={ui.sectionTitle} id="activities-title">
+                Learning beyond the classroom
+              </h2>
             </div>
-            <Link className="text-link" href="/events">
+            <Link className={ui.textLink} href="/events">
               All activities <span aria-hidden="true">→</span>
             </Link>
           </div>
-          <div className="activity-list">
+          <div className="border-t border-border">
             {events.map((event) => (
-              <article className="activity-row" key={event.slug}>
-                <span className="activity-type">{event.type}</span>
+              <article
+                className="grid grid-cols-[1fr_auto] items-center gap-x-4 gap-y-1.5 border-b border-border py-3.5 md:grid-cols-[minmax(145px,0.5fr)_minmax(0,1.2fr)_minmax(140px,0.5fr)] md:gap-5 md:py-[17px]"
+                key={event.slug}
+              >
+                <span className="col-span-full text-[11px] text-subtle md:col-auto">
+                  {event.type}
+                </span>
                 <div>
-                  <h3>{event.name}</h3>
-                  <p>{event.organization}</p>
+                  <h3 className="text-[15px] font-[550] tracking-[-0.025em]">
+                    {event.name}
+                  </h3>
+                  <p className="mt-0.5 text-[11px] text-muted">
+                    {event.organization}
+                  </p>
                 </div>
                 {event.relatedProjectSlug && (
                   <Link
-                    className="text-link activity-link"
+                    className={`${ui.textLink} col-span-full mt-1.5 justify-self-start md:col-auto md:mt-0 md:justify-self-end`}
                     href={`/projects/${event.relatedProjectSlug}`}
                   >
                     Related project <span aria-hidden="true">→</span>
@@ -138,44 +174,61 @@ async function HomeContent() {
         </div>
       </section>
 
-      <section className="section section-border" aria-labelledby="interests-title">
-        <div className="container focus-layout">
+      <section className={ui.section} aria-labelledby="interests-title">
+        <div
+          className={`${ui.container} grid gap-[23px] md:grid-cols-[0.8fr_1.2fr] md:gap-[42px] lg:gap-[70px]`}
+        >
           <div>
-            <p className="eyebrow">AREAS I’M INTERESTED IN</p>
-            <h2 id="interests-title">Technical focus</h2>
+            <p className={`${ui.eyebrow} mb-3.5`}>AREAS I’M INTERESTED IN</p>
+            <h2 className={ui.sectionTitle} id="interests-title">
+              Technical focus
+            </h2>
           </div>
-          <ul className="interest-list">
-            {interests.map((interest) => <li key={interest}>{interest}</li>)}
-          </ul>
+          <TagList variant="interest" items={interests} />
         </div>
       </section>
 
-      <section className="about-preview section-border" aria-labelledby="about-preview-title">
-        <div className="container home-two-column">
+      <section
+        className="border-t border-border py-[50px] md:pt-[61px] md:pb-[66px]"
+        aria-labelledby="about-preview-title"
+      >
+        <div className={`${ui.container} ${ui.twoColumn}`}>
           <div>
-            <p className="eyebrow">ABOUT</p>
-            <h2 id="about-preview-title">Student, developer, product builder.</h2>
+            <p className={`${ui.eyebrow} mb-3.5`}>ABOUT</p>
+            <h2 className={ui.sectionTitle} id="about-preview-title">
+              Student, developer, product builder.
+            </h2>
           </div>
           <div>
-            <p className="section-copy">
+            <p className={`${ui.sectionCopy} mb-[19px]`}>
               I’m in my third year of a Bachelor in Data Engineering at OsloMet.
               I’m interested in how software, data, and product thinking come
               together to solve practical problems.
             </p>
-            <Link className="text-link" href="/about">
+            <Link className={ui.textLink} href="/about">
               More about me <span aria-hidden="true">→</span>
             </Link>
           </div>
         </div>
       </section>
 
-      <section className="contact-band" aria-labelledby="contact-title">
-        <div className="container contact-band-inner">
+      <section
+        className="border-t border-border bg-[#f8f9fb] py-[31px] md:py-[38px]"
+        aria-labelledby="contact-title"
+      >
+        <div
+          className={`${ui.container} flex flex-col items-start gap-5 md:flex-row md:items-center md:justify-between md:gap-[30px]`}
+        >
           <div>
-            <p className="eyebrow">GET IN TOUCH</p>
-            <h2 id="contact-title">Let’s talk about what you’re building.</h2>
+            <p className={`${ui.eyebrow} mb-[9px]`}>GET IN TOUCH</p>
+            <h2
+              className={`${ui.sectionTitle} max-w-[580px]`}
+              id="contact-title"
+            >
+              Let’s talk!
+            </h2>
           </div>
-          <Link className="button button-primary" href="/contact">
+          <Link className={ui.buttonPrimary} href="/contact">
             Contact me <span aria-hidden="true">→</span>
           </Link>
         </div>
@@ -186,7 +239,13 @@ async function HomeContent() {
 
 export default function Home() {
   return (
-    <Suspense fallback={<div className="container loading-state">Loading portfolio…</div>}>
+    <Suspense
+      fallback={
+        <div className={`${ui.container} ${ui.loading}`}>
+          Loading portfolio…
+        </div>
+      }
+    >
       <HomeContent />
     </Suspense>
   );
