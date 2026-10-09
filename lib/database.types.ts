@@ -44,6 +44,12 @@ export type Database = {
         alt: string;
         caption: string | null;
         sort_order: number;
+        public_id: string | null;
+        width: number | null;
+        height: number | null;
+        format: string | null;
+        bytes: number | null;
+        created_at: string;
       }>;
       experiences: Table<{
         slug: string;

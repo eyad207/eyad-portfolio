@@ -19,7 +19,7 @@
   --color-subtle: var(--subtle);
   --color-border: var(--border);
   --color-accent: var(--accent);
-  --font-sans: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  --font-sans: var(--font-display), Arial, Helvetica, sans-serif;
   --font-mono: var(--font-geist-mono), "Courier New", monospace;
 }
 
@@ -34,8 +34,17 @@
     color: var(--foreground);
     font-family: var(--font-sans);
     font-size: 15px;
+    font-weight: 500;
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
   }
 
   a {
