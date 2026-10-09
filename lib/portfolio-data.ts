@@ -207,6 +207,7 @@ export const events: PortfolioEvent[] = [
       { role: "Other participants", names: ["Marcus", "Jakob", "Silje"] },
     ],
     relatedProjectSlug: "pickbox",
+    images: [],
   },
   {
     slug: "telenor-bla-sone",
@@ -225,6 +226,7 @@ export const events: PortfolioEvent[] = [
       "I was particularly interested in cybersecurity and CSOC-related work, including AI-supported security workflows and automated response.",
       "I spoke with people working in cybersecurity and technology.",
     ],
+    images: [],
   },
   {
     slug: "gjensidige-career-day",
@@ -234,6 +236,7 @@ export const events: PortfolioEvent[] = [
     description:
       "Participation in a career-related event offering exposure to the technology and business environment.",
     topics: [],
+    images: [],
   },
 ];
 

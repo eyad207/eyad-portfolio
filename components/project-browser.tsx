@@ -18,11 +18,11 @@ const categories: ProjectCategory[] = [
 ];
 
 const filterButton =
-  "min-h-[30px] cursor-pointer rounded-[3px] border px-[9px] py-1 text-[10px] transition-colors";
+  "min-h-[34px] cursor-pointer rounded-xl border px-3 py-1 text-[11px] font-semibold transition-colors";
 const filterIdle =
-  "border-border bg-white text-muted hover:border-[#bfc7d4] hover:text-foreground";
+  "border-border bg-white text-muted hover:border-accent/30 hover:text-foreground";
 const filterActive = "border-accent bg-accent text-white";
-const filterLabel = "mb-[7px] block text-[11px] font-medium text-muted";
+const filterLabel = "mb-2 block text-[11px] font-bold text-muted";
 
 export function ProjectBrowser({ projects }: { projects: PortfolioProject[] }) {
   const [query, setQuery] = useState("");
@@ -49,12 +49,12 @@ export function ProjectBrowser({ projects }: { projects: PortfolioProject[] }) {
   return (
     <>
       <div
-        className={`${ui.card} mb-[15px] grid gap-[15px] p-3.5 md:grid-cols-[minmax(230px,0.65fr)_minmax(0,1.35fr)] md:items-end md:gap-x-7 md:gap-y-[22px] md:p-[19px]`}
+        className={`${ui.card} mb-6 grid gap-5 p-5 shadow-sm md:grid-cols-[minmax(230px,0.65fr)_minmax(0,1.35fr)] md:items-end md:gap-x-7 md:gap-y-6 md:p-6`}
       >
         <div>
           <label className={filterLabel} htmlFor="project-search">Search projects</label>
           <input
-            className="min-h-10 w-full rounded-[3px] border border-[#d9dde4] px-2.5 py-2 text-xs text-foreground placeholder:text-[#8a919b]"
+            className="min-h-11 w-full rounded-xl border border-border bg-white px-3 py-2 text-xs text-foreground placeholder:text-subtle focus:border-accent"
             id="project-search"
             type="search"
             value={query}
@@ -87,7 +87,7 @@ export function ProjectBrowser({ projects }: { projects: PortfolioProject[] }) {
           </div>
         </div>
       </div>
-      <p className="mb-4 text-[11px] text-subtle" aria-live="polite">
+      <p className="mb-5 text-[11px] font-semibold text-subtle" aria-live="polite">
         {filteredProjects.length} {filteredProjects.length === 1 ? "project" : "projects"}
       </p>
       {filteredProjects.length ? (
@@ -97,7 +97,7 @@ export function ProjectBrowser({ projects }: { projects: PortfolioProject[] }) {
           ))}
         </div>
       ) : (
-        <p className="border border-border p-6 text-[13px] text-muted">
+        <p className="rounded-xl border border-border bg-white p-6 text-[13px] text-muted">
           No projects match those filters yet. Try another search or category.
         </p>
       )}

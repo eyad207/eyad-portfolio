@@ -51,6 +51,20 @@ export type Database = {
         bytes: number | null;
         created_at: string;
       }>;
+      event_images: Table<{
+        id: number;
+        event_slug: string;
+        src: string;
+        alt: string;
+        caption: string | null;
+        sort_order: number;
+        public_id: string | null;
+        width: number | null;
+        height: number | null;
+        format: string | null;
+        bytes: number | null;
+        created_at: string;
+      }>;
       experiences: Table<{
         slug: string;
         organization: string;

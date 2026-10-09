@@ -1,34 +1,34 @@
 const container =
-  "mx-auto w-[calc(100%-40px)] md:w-[min(1080px,calc(100%-48px))] lg:w-[min(1080px,calc(100%-64px))]";
+  "mx-auto w-[calc(100%-40px)] md:w-[min(1140px,calc(100%-56px))] lg:w-[min(1160px,calc(100%-80px))]";
 
 const button =
-  "inline-flex min-h-[42px] items-center justify-center gap-2.5 rounded border border-transparent px-[15px] text-xs font-[550] transition-colors";
+  "inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-transparent px-4 text-xs font-bold transition-colors";
 
 export const ui = {
   container,
-  pageMain: `${container} min-h-[70vh] pt-12 pb-[65px] md:pt-[65px] md:pb-[90px]`,
+  pageMain: `${container} min-h-[70vh] pt-14 pb-[72px] md:pt-[76px] md:pb-[96px]`,
   loading: "pt-2.5 text-xs text-muted",
   eyebrow:
-    "font-mono text-[10px] leading-normal font-medium tracking-[0.055em] text-subtle uppercase",
+    "font-mono text-[10px] leading-normal font-medium tracking-[0.08em] text-subtle uppercase",
   pageTitle:
-    "text-[clamp(38px,5vw,54px)] leading-[1.12] font-[560] tracking-[-0.067em]",
+    "text-[clamp(38px,5vw,58px)] leading-[1.1] font-bold tracking-[-0.06em]",
   heroTitle:
-    "text-[clamp(43px,11vw,58px)] leading-[1.06] font-[560] tracking-[-0.067em] md:text-[clamp(42px,5.7vw,68px)]",
+    "text-[clamp(43px,11vw,62px)] leading-[1.04] font-extrabold tracking-[-0.07em] md:text-[clamp(44px,5.7vw,72px)]",
   sectionTitle:
-    "text-[clamp(26px,3vw,34px)] leading-[1.2] font-[540] tracking-[-0.055em]",
+    "text-[clamp(27px,3vw,36px)] leading-[1.15] font-bold tracking-[-0.055em]",
   blockTitle:
-    "text-[21px] leading-[1.2] font-[550] tracking-[-0.045em] md:text-[23px]",
-  introDescription: "max-w-[570px] text-sm leading-[1.8] text-muted",
-  sectionCopy: "text-[13px] leading-[1.8] text-muted",
+    "text-[21px] leading-[1.2] font-bold tracking-[-0.045em] md:text-[23px]",
+  introDescription: "max-w-[590px] text-[15px] leading-[1.8] text-muted",
+  sectionCopy: "text-[13px] leading-[1.85] text-muted",
   section:
-    "border-t border-border pt-[51px] pb-14 md:pt-[68px] md:pb-[73px]",
+    "border-t border-border pt-14 pb-16 md:pt-20 md:pb-[84px]",
   sectionHeading:
     "mb-[22px] flex flex-col items-start gap-3 md:mb-[29px] md:flex-row md:items-end md:justify-between md:gap-8",
   button,
-  buttonPrimary: `${button} bg-accent text-white hover:bg-blue-700`,
-  buttonSecondary: `${button} border-border bg-white text-foreground hover:border-[#c8cdd5] hover:bg-[#fafbfc]`,
+  buttonPrimary: `${button} bg-accent text-white shadow-sm hover:bg-[var(--accent-strong)]`,
+  buttonSecondary: `${button} border-border bg-white text-foreground hover:border-accent/30 hover:bg-surface`,
   textLink:
-    "inline-flex items-center gap-1.5 text-xs font-medium text-accent underline decoration-[#c5d4f7] underline-offset-4 transition-colors hover:text-blue-700 hover:decoration-accent",
+    "inline-flex items-center gap-1.5 text-xs font-bold text-accent underline decoration-accent/25 underline-offset-4 transition-colors hover:text-[var(--accent-strong)] hover:decoration-accent",
   projectGrid:
     "grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-[18px] lg:grid-cols-3",
   projectGridSecondary:
@@ -47,5 +47,5 @@ export const ui = {
   detailSection: "mb-[34px]",
   detailHeading: "mb-[11px] text-[17px] font-[560] tracking-[-0.025em]",
   detailParagraph: "max-w-[700px] text-[13px] leading-[1.85] text-muted",
-  card: "rounded-[3px] border border-border",
+  card: "rounded-xl border border-border bg-white",
 } as const;

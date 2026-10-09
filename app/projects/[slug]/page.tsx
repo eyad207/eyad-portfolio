@@ -41,26 +41,26 @@ async function ProjectDetailContent({ params }: ProjectPageProps) {
   return (
     <main className={ui.pageMain}>
       <Link
-        className="mb-[31px] inline-flex items-center gap-2 text-xs text-muted transition-colors hover:text-accent"
+        className="mb-9 inline-flex items-center gap-2 text-xs font-bold text-muted transition-colors hover:text-accent"
         href="/projects"
       >
         <span aria-hidden="true">←</span> All projects
       </Link>
-      <header className="max-w-[780px] border-b border-border pb-[35px]">
-        <p className={`${ui.eyebrow} mb-3.5`}>{project.categories.join(" / ")}</p>
-        <h1 className="text-[clamp(36px,5vw,54px)] leading-[1.13] font-[560] tracking-[-0.06em]">
+      <header className="max-w-[850px] border-b border-border pb-10">
+        <p className={`${ui.eyebrow} mb-4`}>{project.categories.join(" / ")}</p>
+        <h1 className="text-[clamp(38px,5vw,60px)] leading-[1.08] font-extrabold tracking-[-0.065em]">
           {project.name}
         </h1>
-        <p className="mt-[15px] max-w-[660px] text-[15px] leading-[1.8] text-muted">
+        <p className="mt-5 max-w-[720px] text-[15px] leading-[1.85] text-muted">
           {project.summary}
         </p>
         {project.status && (
-          <p className={`${ui.card} mt-4 inline-block px-[9px] py-[5px] text-[11px] text-muted`}>
+          <p className={`${ui.card} mt-5 inline-block px-3 py-2 text-[11px] font-semibold text-muted`}>
             {project.status}
           </p>
         )}
         {project.links.length > 0 && (
-          <div className="mt-[19px] flex flex-wrap items-center gap-[11px]">
+          <div className="mt-6 flex flex-wrap items-center gap-3">
             {project.links.map((link) => (
               <a
                 className={ui.buttonSecondary}
@@ -77,30 +77,39 @@ async function ProjectDetailContent({ params }: ProjectPageProps) {
       </header>
 
       {project.images.length > 0 && (
-        <section className={`${ui.detailSection} mt-9`} aria-labelledby="screenshots-heading">
-          <h2 className={ui.detailHeading} id="screenshots-heading">Screenshots</h2>
-          <div className="grid gap-4 md:grid-cols-2">
-            {project.images.map((image) => (
-              <figure key={image.src}>
+        <section className="mt-12" aria-labelledby="screenshots-heading">
+          <div className="mb-5 flex items-end justify-between gap-5">
+            <div>
+              <p className={`${ui.eyebrow} mb-3`}>PROJECT GALLERY</p>
+              <h2 className={ui.blockTitle} id="screenshots-heading">A closer look</h2>
+            </div>
+            <p className="hidden text-xs text-subtle md:block">
+              Product screens and implementation details
+            </p>
+          </div>
+          <div className="grid gap-5 md:grid-cols-2">
+            {project.images.map((image, index) => (
+              <figure className={`${ui.card} overflow-hidden`} key={image.src}>
                 <Image
                   src={image.src}
                   alt={image.alt}
                   width={1200}
                   height={800}
-                  className={`${ui.card} block h-auto w-full`}
+                  className="aspect-[16/10] w-full object-cover"
                 />
-                {image.caption && (
-                  <figcaption className="mt-1.5 text-[10px] text-subtle">
-                    {image.caption}
-                  </figcaption>
-                )}
+                <figcaption className="border-t border-border px-4 py-3.5 text-xs leading-5 text-muted">
+                  <span className="mr-2 font-mono text-[10px] font-semibold tracking-[0.08em] text-subtle">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  {image.caption ?? `A view from the ${project.name} product experience.`}
+                </figcaption>
               </figure>
             ))}
           </div>
         </section>
       )}
 
-      <div className="grid gap-0 pt-[27px] md:grid-cols-[minmax(0,1fr)_minmax(220px,0.38fr)] md:gap-[75px] md:pt-9">
+      <div className="grid gap-0 pt-10 md:grid-cols-[minmax(0,1fr)_minmax(220px,0.38fr)] md:gap-20 md:pt-12">
         <div>
           <section className={ui.detailSection}>
             <h2 className={ui.detailHeading}>Overview</h2>
@@ -150,7 +159,7 @@ async function ProjectDetailContent({ params }: ProjectPageProps) {
             </section>
           )}
         </div>
-        <aside className="border-t border-border pt-2 md:border-0 md:pt-0">
+        <aside className="border-t border-border pt-6 md:border-0 md:pt-0">
           {project.technologies.length > 0 && (
             <section className={`${ui.detailSection} mt-[22px] md:mt-0`}>
               <h2 className={ui.detailHeading}>
@@ -182,7 +191,7 @@ async function ProjectDetailContent({ params }: ProjectPageProps) {
       </div>
 
       {relatedProjects.length > 0 && (
-        <section className="border-t border-border pt-[35px]" aria-labelledby="related-heading">
+        <section className="border-t border-border pt-10" aria-labelledby="related-heading">
           <div className={ui.sectionHeading}>
             <div>
               <p className={`${ui.eyebrow} mb-3.5`}>MORE WORK</p>
@@ -191,8 +200,8 @@ async function ProjectDetailContent({ params }: ProjectPageProps) {
           </div>
           <div className={ui.projectGridSecondary}>
             {relatedProjects.map((relatedProject) => (
-              <article className={`${ui.card} p-[17px]`} key={relatedProject.slug}>
-                <h3 className="text-[15px] font-[550]">
+              <article className={`${ui.card} p-5 transition-[border-color,box-shadow] hover:border-accent/35 hover:shadow-sm`} key={relatedProject.slug}>
+                <h3 className="text-[17px] font-bold tracking-[-0.035em]">
                   <Link
                     className="transition-colors hover:text-accent"
                     href={`/projects/${relatedProject.slug}`}
@@ -200,7 +209,7 @@ async function ProjectDetailContent({ params }: ProjectPageProps) {
                     {relatedProject.name}
                   </Link>
                 </h3>
-                <p className="mt-2 text-[11px] leading-[1.7] text-muted">
+                <p className="mt-2.5 text-[11px] leading-[1.8] text-muted">
                   {relatedProject.summary}
                 </p>
               </article>

@@ -21,8 +21,8 @@ export default function ProjectsPage() {
     <main className={ui.pageMain}>
       <PageIntro
         eyebrow="PROJECTS"
-        title="Work I’ve built and worked on."
-        description="A selection of software and product projects, from startup work to university applications. Search or filter to explore."
+        title="Selected work, built with purpose."
+        description="A selection of product, startup, and university projects. Each case study covers the problem, the work, and the technology behind it."
       />
       <Suspense fallback={<p className={ui.loading}>Loading projects…</p>}>
         <ProjectsContent />

@@ -55,6 +55,7 @@ export type PortfolioEvent = {
   learning?: string[];
   people?: { role: string; names: string[] }[];
   relatedProjectSlug?: string;
+  images: ProjectImage[];
 };
 
 export type PortfolioData = {

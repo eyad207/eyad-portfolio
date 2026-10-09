@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 import { ProfilePhoto } from "@/components/profile-photo";
@@ -27,39 +28,55 @@ async function HomeContent() {
   return (
     <main>
       <section
-        className={`${ui.container} grid items-center gap-[34px] pt-[58px] pb-[52px] md:min-h-[500px] md:grid-cols-[minmax(0,1.2fr)_minmax(280px,0.72fr)] md:gap-[45px] lg:min-h-[570px] lg:gap-[86px] lg:pt-[60px] lg:pb-[70px]`}
+        className="border-b border-border bg-surface/70"
         aria-labelledby="intro-title"
       >
-        <div className="py-4">
-          <p className={`${ui.eyebrow} mb-3.5`}>
-            DATA ENGINEERING STUDENT / SOFTWARE DEVELOPER
-          </p>
-          <h1 className={ui.heroTitle} id="intro-title">
-            Hello, I'm
-          </h1>
-          <h1 className={`${ui.heroTitle} text-blue-700`}>Eyad Lazkani</h1>
-          <p className={`${ui.introDescription} mt-[22px] md:text-[15px]`}>
-            I study Data Engineering at OsloMet and build web products alongside
-            my studies—from software for a real business to PickBox, a product I
-            continue developing to help reduce food waste.
-          </p>
-          <div className="mt-[27px] flex flex-wrap items-center gap-[11px]">
-            <Link className={ui.buttonPrimary} href="/projects">
-              Explore projects <span aria-hidden="true">→</span>
-            </Link>
-            <Link className={ui.buttonSecondary} href="/contact">
-              Contact me
-            </Link>
+        <div
+          className={`${ui.container} grid items-center gap-10 py-14 md:min-h-[590px] md:grid-cols-[minmax(0,1.16fr)_minmax(290px,0.68fr)] md:gap-14 md:py-16 lg:gap-24`}
+        >
+          <div className="max-w-[700px]">
+            <p className={`${ui.eyebrow} mb-5`}>
+              EYAD LAZKANI · DATA ENGINEERING &amp; SOFTWARE
+            </p>
+            <h1 className={ui.heroTitle} id="intro-title">
+              Building useful digital products with{" "}
+              <span className="text-accent">data and care.</span>
+            </h1>
+            <p className={`${ui.introDescription} mt-6`}>
+              I&apos;m a Data Engineering student at OsloMet and software
+              developer focused on turning practical problems into thoughtful,
+              reliable web products.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <Link className={ui.buttonPrimary} href="/projects">
+                Explore selected work <span aria-hidden="true">→</span>
+              </Link>
+              <Link className={ui.buttonSecondary} href="/contact">
+                Let&apos;s work together
+              </Link>
+            </div>
+            <dl className="mt-10 grid max-w-[510px] grid-cols-2 gap-5 border-t border-border pt-5">
+              <div>
+                <dt className={ui.eyebrow}>BASED IN</dt>
+                <dd className="mt-1.5 text-sm font-bold tracking-[-0.02em]">
+                  Oslo, Norway
+                </dd>
+              </div>
+              <div>
+                <dt className={ui.eyebrow}>CURRENT FOCUS</dt>
+                <dd className="mt-1.5 text-sm font-bold tracking-[-0.02em]">
+                  Product engineering
+                </dd>
+              </div>
+            </dl>
           </div>
-          <p className="mt-6 text-[11px] text-subtle">
-            OsloMet · Data Engineering
-          </p>
-        </div>
-        <div className="w-full max-w-[300px] md:max-w-[356px] md:justify-self-end">
-          <ProfilePhoto />
-          <p className="mt-[9px] font-mono text-[9px] text-subtle">
-            Data Engineering · Software · Products
-          </p>
+          <div className="w-full max-w-[340px] md:max-w-[390px] md:justify-self-end">
+            <ProfilePhoto />
+            <p className="mt-3 text-xs leading-6 text-muted">
+              Data Engineering student at OsloMet, building products alongside
+              my studies.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -67,13 +84,13 @@ async function HomeContent() {
         <div className={ui.container}>
           <div className={ui.sectionHeading}>
             <div>
-              <p className={`${ui.eyebrow} mb-3.5`}>SELECTED WORK</p>
+              <p className={`${ui.eyebrow} mb-4`}>SELECTED WORK</p>
               <h2 className={ui.sectionTitle} id="featured-title">
-                Featured projects
+                Products built for real needs.
               </h2>
             </div>
             <Link className={ui.textLink} href="/projects">
-              All projects <span aria-hidden="true">→</span>
+              Browse all projects <span aria-hidden="true">→</span>
             </Link>
           </div>
           <div className={ui.projectGrid}>
@@ -82,8 +99,13 @@ async function HomeContent() {
             ))}
           </div>
           {otherProjects.length > 0 && (
-            <div className="mt-[34px]">
-              <p className={`${ui.eyebrow} mb-3`}>MORE PROJECTS</p>
+            <div className="mt-12">
+              <div className="mb-5 flex items-center justify-between gap-5">
+                <p className={ui.eyebrow}>MORE PROJECTS</p>
+                <span className="text-xs text-subtle">
+                  University work and independent experiments
+                </span>
+              </div>
               <div className={ui.projectGridSecondary}>
                 {otherProjects.map((project) => (
                   <ProjectCard key={project.slug} project={project} compact />
@@ -95,34 +117,33 @@ async function HomeContent() {
       </section>
 
       {experience && (
-        <section className={ui.section} aria-labelledby="experience-title">
+        <section
+          className={`${ui.section} bg-surface/55`}
+          aria-labelledby="experience-title"
+        >
           <div className={`${ui.container} ${ui.twoColumn}`}>
             <div>
-              <p className={`${ui.eyebrow} mb-3.5`}>PROFESSIONAL EXPERIENCE</p>
+              <p className={`${ui.eyebrow} mb-4`}>PROFESSIONAL EXPERIENCE</p>
               <h2 className={ui.sectionTitle} id="experience-title">
-                Building in a real-world setting.
+                Learning through real-world delivery.
               </h2>
-              <p className={`${ui.sectionCopy} mt-[15px] mb-[19px]`}>
-                Alongside my studies, I work on software and product
-                functionality at FixTech AS.
+              <p className={`${ui.sectionCopy} mt-5 mb-6`}>
+                Alongside my studies, I contribute to product and software
+                development at FixTech AS.
               </p>
               <Link className={ui.textLink} href="/experience">
                 View experience <span aria-hidden="true">→</span>
               </Link>
             </div>
-            <article className="border-l-2 border-[#d8e3fb] pl-5">
-              <div className="font-mono text-[9px] tracking-[0.03em] text-subtle">
-                DECEMBER 2025 — PRESENT
-              </div>
-              <h3 className="mt-2.5 text-lg font-[550] tracking-[-0.035em]">
+            <article className={`${ui.card} p-6 shadow-sm`}>
+              <p className={ui.eyebrow}>DECEMBER 2025 — PRESENT</p>
+              <h3 className="mt-4 text-2xl leading-tight font-bold tracking-[-0.045em]">
                 {experience.role}
               </h3>
-              <p className="mt-0.5 text-xs leading-[1.75] text-foreground">
+              <p className="mt-2 text-sm font-bold text-foreground">
                 {experience.organization}
               </p>
-              <p className="mt-[9px] text-xs leading-[1.75] text-muted">
-                {experience.summary}
-              </p>
+              <p className={`${ui.sectionCopy} mt-4`}>{experience.summary}</p>
             </article>
           </div>
         </section>
@@ -132,56 +153,69 @@ async function HomeContent() {
         <div className={ui.container}>
           <div className={ui.sectionHeading}>
             <div>
-              <p className={`${ui.eyebrow} mb-3.5`}>
-                PROGRAMS &amp; CAREER ACTIVITIES
-              </p>
+              <p className={`${ui.eyebrow} mb-4`}>COMMUNITY &amp; LEARNING</p>
               <h2 className={ui.sectionTitle} id="activities-title">
-                Learning beyond the classroom
+                Learning beyond the classroom.
               </h2>
             </div>
             <Link className={ui.textLink} href="/events">
-              All activities <span aria-hidden="true">→</span>
+              View all activities <span aria-hidden="true">→</span>
             </Link>
           </div>
-          <div className="border-t border-border">
+          <div className="grid gap-4 md:grid-cols-3">
             {events.map((event) => (
               <article
-                className="grid grid-cols-[1fr_auto] items-center gap-x-4 gap-y-1.5 border-b border-border py-3.5 md:grid-cols-[minmax(145px,0.5fr)_minmax(0,1.2fr)_minmax(140px,0.5fr)] md:gap-5 md:py-[17px]"
+                className={`${ui.card} flex min-h-[230px] flex-col overflow-hidden`}
                 key={event.slug}
               >
-                <span className="col-span-full text-[11px] text-subtle md:col-auto">
-                  {event.type}
-                </span>
-                <div>
-                  <h3 className="text-[15px] font-[550] tracking-[-0.025em]">
+                {event.images[0] && (
+                  <div className="relative aspect-[16/8] bg-surface">
+                    <Image
+                      className="object-cover"
+                      src={event.images[0].src}
+                      alt={event.images[0].alt}
+                      fill
+                      sizes="(min-width: 768px) 33vw, 100vw"
+                    />
+                  </div>
+                )}
+                <div className="flex flex-1 flex-col p-5">
+                  <p className={ui.eyebrow}>{event.type}</p>
+                  <h3 className="mt-3 text-lg leading-tight font-bold tracking-[-0.04em]">
                     {event.name}
                   </h3>
-                  <p className="mt-0.5 text-[11px] text-muted">
+                  <p className="mt-1.5 text-xs font-semibold text-muted">
                     {event.organization}
                   </p>
+                  <p className="mt-3 text-xs leading-6 text-muted">
+                    {event.description}
+                  </p>
+                  {event.relatedProjectSlug && (
+                    <Link
+                      className={`${ui.textLink} mt-auto pt-4`}
+                      href={`/projects/${event.relatedProjectSlug}`}
+                    >
+                      Related project <span aria-hidden="true">→</span>
+                    </Link>
+                  )}
                 </div>
-                {event.relatedProjectSlug && (
-                  <Link
-                    className={`${ui.textLink} col-span-full mt-1.5 justify-self-start md:col-auto md:mt-0 md:justify-self-end`}
-                    href={`/projects/${event.relatedProjectSlug}`}
-                  >
-                    Related project <span aria-hidden="true">→</span>
-                  </Link>
-                )}
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className={ui.section} aria-labelledby="interests-title">
+      <section
+        className={`${ui.section} bg-surface/55`}
+        aria-labelledby="interests-title"
+      >
         <div
-          className={`${ui.container} grid gap-[23px] md:grid-cols-[0.8fr_1.2fr] md:gap-[42px] lg:gap-[70px]`}
+          className={`${ui.container} grid gap-7 md:grid-cols-[0.8fr_1.2fr] md:items-start md:gap-16`}
         >
           <div>
-            <p className={`${ui.eyebrow} mb-3.5`}>AREAS I’M INTERESTED IN</p>
+            <p className={`${ui.eyebrow} mb-4`}>AREAS OF INTEREST</p>
             <h2 className={ui.sectionTitle} id="interests-title">
-              Technical focus
+              A broad technical foundation.
             </h2>
           </div>
           <TagList variant="interest" items={interests} />
@@ -189,48 +223,25 @@ async function HomeContent() {
       </section>
 
       <section
-        className="border-t border-border py-[50px] md:pt-[61px] md:pb-[66px]"
-        aria-labelledby="about-preview-title"
+        className="border-t border-border py-14 md:py-20"
+        aria-labelledby="contact-title"
       >
         <div className={`${ui.container} ${ui.twoColumn}`}>
           <div>
-            <p className={`${ui.eyebrow} mb-3.5`}>ABOUT</p>
-            <h2 className={ui.sectionTitle} id="about-preview-title">
-              Student, developer, product builder.
+            <p className={`${ui.eyebrow} mb-4`}>LET&apos;S CONNECT</p>
+            <h2 className={ui.sectionTitle} id="contact-title">
+              Have a project or opportunity in mind?
             </h2>
           </div>
           <div>
-            <p className={`${ui.sectionCopy} mb-[19px]`}>
-              I’m in my third year of a Bachelor in Data Engineering at OsloMet.
-              I’m interested in how software, data, and product thinking come
-              together to solve practical problems.
+            <p className={ui.sectionCopy}>
+              I&apos;m always open to thoughtful conversations about software,
+              data, and product ideas.
             </p>
-            <Link className={ui.textLink} href="/about">
-              More about me <span aria-hidden="true">→</span>
+            <Link className={`${ui.buttonPrimary} mt-6`} href="/contact">
+              Get in touch <span aria-hidden="true">→</span>
             </Link>
           </div>
-        </div>
-      </section>
-
-      <section
-        className="border-t border-border bg-[#f8f9fb] py-[31px] md:py-[38px]"
-        aria-labelledby="contact-title"
-      >
-        <div
-          className={`${ui.container} flex flex-col items-start gap-5 md:flex-row md:items-center md:justify-between md:gap-[30px]`}
-        >
-          <div>
-            <p className={`${ui.eyebrow} mb-[9px]`}>GET IN TOUCH</p>
-            <h2
-              className={`${ui.sectionTitle} max-w-[580px]`}
-              id="contact-title"
-            >
-              Let’s talk!
-            </h2>
-          </div>
-          <Link className={ui.buttonPrimary} href="/contact">
-            Contact me <span aria-hidden="true">→</span>
-          </Link>
         </div>
       </section>
     </main>

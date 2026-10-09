@@ -2,13 +2,14 @@
 
 :root {
   color-scheme: light;
-  --background: #ffffff;
-  --surface: #f7f8fa;
-  --foreground: #191b1f;
-  --muted: #626a75;
-  --subtle: #838b96;
-  --border: #e3e6eb;
-  --accent: #2563eb;
+  --background: #fbfcfe;
+  --surface: #f3f6fa;
+  --foreground: #102a43;
+  --muted: #52677c;
+  --subtle: #718096;
+  --border: #dce5ee;
+  --accent: #123f6d;
+  --accent-strong: #0d3157;
 }
 
 @theme inline {
@@ -35,7 +36,7 @@
     font-family: var(--font-sans);
     font-size: 15px;
     font-weight: 500;
-    line-height: 1.65;
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -44,7 +45,7 @@
   h3,
   h4 {
     font-weight: 700;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.035em;
   }
 
   a {

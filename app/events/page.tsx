@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Suspense } from "react";
 import Link from "next/link";
 import { PageIntro } from "@/components/page-intro";
@@ -34,6 +35,24 @@ async function EventsContent() {
                 <p className={`${ui.eyebrow} mb-2`}>{event.organization}</p>
                 <h2 className={ui.blockTitle}>{event.name}</h2>
                 <p className={`${ui.sectionCopy} mt-[9px]`}>{event.description}</p>
+                {event.images.length > 0 && (
+                  <div className="mt-5 grid gap-4 sm:grid-cols-2">
+                    {event.images.map((image) => (
+                      <figure className={`${ui.card} overflow-hidden`} key={image.src}>
+                        <Image
+                          className="aspect-[16/10] w-full object-cover"
+                          src={image.src}
+                          alt={image.alt}
+                          width={1200}
+                          height={800}
+                        />
+                        <figcaption className="border-t border-border px-3.5 py-3 text-[11px] text-muted">
+                          {image.caption ?? `A moment from ${event.name}.`}
+                        </figcaption>
+                      </figure>
+                    ))}
+                  </div>
+                )}
                 {event.topics.length > 0 && (
                   <div className="mt-[21px]">
                     <h3 className="mb-[9px] text-xs font-[550] text-foreground">

@@ -6,7 +6,7 @@ import path from "node:path";
 
 const photoPath = path.join(process.cwd(), "public", "images", "profile.jpg");
 const frame =
-  "aspect-[0.95] w-full overflow-hidden rounded-[100px] border border-border bg-surface md:aspect-[0.85]";
+  "aspect-[0.95] w-full overflow-hidden rounded-xl border border-border bg-surface shadow-sm md:aspect-[0.85]";
 const image = "size-full object-cover";
 
 export function ProfilePhoto({ className = "" }: { className?: string }) {

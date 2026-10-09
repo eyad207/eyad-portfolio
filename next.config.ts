@@ -6,7 +6,13 @@ const nextConfig: NextConfig = {
     agentFeedback: true,
   },
   images: {
-    domains: ["res.cloudinary.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        pathname: "/**",
+      },
+    ],
   },
   cacheComponents: true,
   partialPrefetching: true,

@@ -1,25 +1,25 @@
 import Link from "next/link";
-import { Mail, Heart } from "lucide-react";
+import { ArrowUpRight, Mail } from "lucide-react";
+import { ui } from "@/lib/ui";
 
 export default function SiteFooter() {
   const currentYear = 2026;
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Brand */}
-          <div className="col-span-1 md:col-span-2">
-            <h3 className="text-2xl font-bold mb-4">Eyad Lazkani</h3>
-            <p className="text-gray-400 mb-6 max-w-md">
-              Full Stack Developer passionate about creating exceptional digital
-              experiences. Let&apos;s build something amazing together.
+    <footer className="border-t border-border bg-surface">
+      <div className={`${ui.container} py-12 md:py-14`}>
+        <div className="grid gap-10 md:grid-cols-[minmax(0,1fr)_auto] md:items-start">
+          <div>
+            <h3 className="text-xl font-extrabold tracking-[-0.045em]">Eyad Lazkani</h3>
+            <p className="mt-3 max-w-md text-sm leading-7 text-muted">
+              Data Engineering student and software developer building useful,
+              thoughtful products for real people.
             </p>
-            <div className="flex space-x-4">
+            <div className="mt-6 flex gap-3">
               <a
                 href="https://www.linkedin.com/in/eyad-lazkani-2146702a0/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="inline-flex size-11 items-center justify-center rounded-xl border border-border bg-white text-muted transition-colors hover:border-accent/30 hover:text-accent"
                 aria-label="LinkedIn"
               >
                 <svg
@@ -34,72 +34,60 @@ export default function SiteFooter() {
               </a>
 
               <a
-                href="/mailto:eyadlaza@gmail.com"
-                className="text-gray-400 hover:text-white transition-colors"
+                href="mailto:eyadlaza@gmail.com"
+                className="inline-flex size-11 items-center justify-center rounded-xl border border-border bg-white text-muted transition-colors hover:border-accent/30 hover:text-accent"
+                aria-label="Email Eyad Lazkani"
               >
-                <Mail className="w-6 h-6" />
+                <Mail className="size-5" />
               </a>
             </div>
           </div>
-
-          {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2">
+            <h4 className="text-xs font-extrabold tracking-[0.08em] text-subtle uppercase">
+              Explore
+            </h4>
+            <ul className="mt-4 grid gap-2.5">
               <li>
                 <Link
                   href="/"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="inline-flex items-center gap-1.5 text-sm font-bold text-muted transition-colors hover:text-accent"
                 >
-                  Home
+                  Home <ArrowUpRight className="size-3.5" aria-hidden="true" />
                 </Link>
               </li>
               <li>
                 <Link
                   href="/about"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="inline-flex items-center gap-1.5 text-sm font-bold text-muted transition-colors hover:text-accent"
                 >
-                  About
+                  About <ArrowUpRight className="size-3.5" aria-hidden="true" />
                 </Link>
               </li>
               <li>
                 <Link
                   href="/projects"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="inline-flex items-center gap-1.5 text-sm font-bold text-muted transition-colors hover:text-accent"
                 >
-                  Projects
+                  Projects <ArrowUpRight className="size-3.5" aria-hidden="true" />
                 </Link>
               </li>
               <li>
                 <Link
                   href="/contact"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="inline-flex items-center gap-1.5 text-sm font-bold text-muted transition-colors hover:text-accent"
                 >
-                  Contact
+                  Contact <ArrowUpRight className="size-3.5" aria-hidden="true" />
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Services */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Services</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li>Web Development</li>
-              <li>UI/UX Design</li>
-              <li>Consulting</li>
-            </ul>
-          </div>
         </div>
-
-        <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm">
+        <div className="mt-10 flex flex-col gap-3 border-t border-border pt-6 text-xs text-subtle md:flex-row md:items-center md:justify-between">
+          <p>
             © {currentYear} Eyad Lazkani. All rights reserved.
           </p>
-          <p className="text-gray-400 text-sm flex items-center mt-4 md:mt-0">
-            Made with <Heart className="w-4 h-4 mx-1 text-red-500" /> and lots
-            of coffee
-          </p>
+          <p>Designed and built with care in Oslo.</p>
         </div>
       </div>
     </footer>

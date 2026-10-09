@@ -45,6 +45,7 @@ async function getSupabasePortfolioData(
     experienceTechnologiesResult,
     eventsResult,
     eventTagsResult,
+    eventImagesResult,
     projectLinksResult,
   ] = await Promise.all([
     supabase.from("projects").select("*").eq("published", true).order("sort_order"),
@@ -55,6 +56,7 @@ async function getSupabasePortfolioData(
     supabase.from("experience_technologies").select("*").order("sort_order"),
     supabase.from("events").select("*").eq("published", true).order("sort_order"),
     supabase.from("event_tags").select("*").order("sort_order"),
+    supabase.from("event_images").select("*").order("sort_order"),
     supabase.from("links").select("*").eq("entity_type", "project").order("sort_order"),
   ]);
 
@@ -67,6 +69,7 @@ async function getSupabasePortfolioData(
     experienceTechnologiesResult,
     eventsResult,
     eventTagsResult,
+    eventImagesResult,
     projectLinksResult,
   ];
   const failedResult = results.find((result) => result.error);
@@ -145,6 +148,13 @@ async function getSupabasePortfolioData(
       .filter((tag) => tag.event_slug === event.slug)
       .sort((a, b) => a.sort_order - b.sort_order)
       .map((tag) => tag.tag),
+    images: (eventImagesResult.data ?? [])
+      .filter((image) => image.event_slug === event.slug)
+      .map(({ src, alt, caption }) => ({
+        src,
+        alt,
+        ...(caption ? { caption } : {}),
+      })),
     ...(event.learning.length ? { learning: event.learning } : {}),
     ...(event.people.length ? { people: event.people } : {}),
     ...(event.related_project_slug
