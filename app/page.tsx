@@ -162,37 +162,42 @@ async function HomeContent() {
               View all activities <span aria-hidden="true">→</span>
             </Link>
           </div>
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-4">
             {events.map((event) => (
               <article
-                className={`${ui.card} flex min-h-[230px] flex-col overflow-hidden`}
+                className={`${ui.card} flex flex-col overflow-hidden md:flex-row`}
                 key={event.slug}
               >
                 {event.images[0] && (
-                  <div className="relative aspect-[16/8] bg-surface">
+                  <figure className="relative aspect-[11/5] w-full shrink-0 bg-surface md:aspect-[8/5] md:w-[240px]">
                     <Image
-                      className="object-cover"
                       src={event.images[0].src}
                       alt={event.images[0].alt}
+                      className="object-contain p-2"
                       fill
-                      sizes="(min-width: 768px) 33vw, 100vw"
+                      sizes="(min-width: 768px) 34vw, 100vw"
                     />
-                  </div>
+                  </figure>
                 )}
-                <div className="flex flex-1 flex-col p-5">
+                <div className="flex min-w-0 flex-1 flex-col p-4 md:p-5">
                   <p className={ui.eyebrow}>{event.type}</p>
-                  <h3 className="mt-3 text-lg leading-tight font-bold tracking-[-0.04em]">
+                  <h3 className="mt-2 text-lg leading-tight font-bold tracking-[-0.04em]">
                     {event.name}
                   </h3>
                   <p className="mt-1.5 text-xs font-semibold text-muted">
                     {event.organization}
                   </p>
-                  <p className="mt-3 text-xs leading-6 text-muted">
+                  {event.images[0]?.caption && (
+                    <p className="mt-3 text-xs font-semibold text-muted">
+                      {event.images[0].caption}
+                    </p>
+                  )}
+                  <p className="mt-3 max-w-[720px] text-[13px] leading-6 text-muted">
                     {event.description}
                   </p>
                   {event.relatedProjectSlug && (
                     <Link
-                      className={`${ui.textLink} mt-auto pt-4`}
+                      className={`${ui.textLink} mt-4 self-start`}
                       href={`/projects/${event.relatedProjectSlug}`}
                     >
                       Related project <span aria-hidden="true">→</span>

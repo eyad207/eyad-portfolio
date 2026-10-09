@@ -86,10 +86,11 @@ async function getSupabasePortfolioData(
 
     const images: ProjectImage[] = (imagesResult.data ?? [])
       .filter((image) => image.project_slug === project.slug)
-      .map(({ src, alt, caption }) => ({
+      .map(({ src, alt, caption, width, height }) => ({
         src,
         alt,
         ...(caption ? { caption } : {}),
+        ...(width && height ? { width, height } : {}),
       }));
 
     const links = (projectLinksResult.data ?? [])
@@ -150,10 +151,11 @@ async function getSupabasePortfolioData(
       .map((tag) => tag.tag),
     images: (eventImagesResult.data ?? [])
       .filter((image) => image.event_slug === event.slug)
-      .map(({ src, alt, caption }) => ({
+      .map(({ src, alt, caption, width, height }) => ({
         src,
         alt,
         ...(caption ? { caption } : {}),
+        ...(width && height ? { width, height } : {}),
       })),
     ...(event.learning.length ? { learning: event.learning } : {}),
     ...(event.people.length ? { people: event.people } : {}),

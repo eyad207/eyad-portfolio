@@ -13,6 +13,8 @@ export type ProjectImage = {
   src: string;
   alt: string;
   caption?: string;
+  width?: number;
+  height?: number;
 };
 
 export type PortfolioProject = {
